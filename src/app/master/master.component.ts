@@ -22,10 +22,12 @@ export class MasterComponent implements OnInit {
 
   ngOnInit() {
     this.page = 1;
+    this.keyword = '';
     this.getFlatUserList()
   }
   getFlatUserList(){
     this.boolPreloader = true;
+    this.errorMessage = false;
     this.title = 'userList'
     this._masterService.getFlatUserList(this.page).subscribe(res=>{
       this.listData = res;
@@ -42,6 +44,7 @@ export class MasterComponent implements OnInit {
   }
   getUserRepo(user){
     this.boolPreloader = true;
+    this.errorMessage = false;
     this.title = 'repoList';
     this._masterService.getRepo(user, this.page).subscribe(res=>{
       this.listData = res;
@@ -60,6 +63,7 @@ export class MasterComponent implements OnInit {
   }
   searchUserApiCall(){
     this.boolPreloader = true;
+    this.errorMessage = false;
     this.title = 'userSearch';
     this._masterService.getUserSearch(this.keyword, this.page).subscribe(res=>{
       this.listData = res['items'];

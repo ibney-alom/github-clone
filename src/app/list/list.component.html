@@ -1,0 +1,17 @@
+
+<div class="list_block">
+    <ul *ngIf = "listData.length > 0">
+        <li *ngFor="let data of listData" class="mb-2">
+            <ng-container *ngIf="title == 'userList' || title == 'userSearch'">
+                <a href="javascript:void(0)" (click)="getRepo(data.login)">{{data.login}}</a>
+            </ng-container>
+            <ng-container *ngIf="title == 'repoList'">
+                {{data.name}}
+            </ng-container>
+           
+        </li>
+    </ul>
+    <div class="text-center" *ngIf = "listData.length == 0">
+        No Result found
+    </div>
+</div>

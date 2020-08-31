@@ -13,6 +13,7 @@ export class MasterComponent implements OnInit {
   title: string = '';
   userName: string = '';
   boolPreloader: boolean = false;
+  errorMessage: boolean = false;
   page: number = 1;
   Math: any;
   constructor(private _masterService: MasterService) { 
@@ -29,6 +30,9 @@ export class MasterComponent implements OnInit {
     this._masterService.getFlatUserList(this.page).subscribe(res=>{
       this.listData = res;
       this.boolPreloader = false;
+    }, err=>{
+      this.boolPreloader = false;
+      this.errorMessage = true;
     })
   }
   userRepo(user){
@@ -42,6 +46,9 @@ export class MasterComponent implements OnInit {
     this._masterService.getRepo(user, this.page).subscribe(res=>{
       this.listData = res;
       this.boolPreloader = false;
+    }, err=>{
+      this.boolPreloader = false;
+      this.errorMessage = true;
     })
   }
   searchUser(){
@@ -57,6 +64,9 @@ export class MasterComponent implements OnInit {
     this._masterService.getUserSearch(this.keyword, this.page).subscribe(res=>{
       this.listData = res['items'];
       this.boolPreloader = false;
+    }, err=>{
+      this.boolPreloader = false;
+      this.errorMessage = true;
     })
   }
   next(evt){

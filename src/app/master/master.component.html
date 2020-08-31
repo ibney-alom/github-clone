@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-3"></div>
 </div>
-<div class="mt-5">
+<div class="mt-5" *ngIf="!errorMessage">
     <ng-container *ngIf="!boolPreloader">
         <div class="row">
             <div class="col-md-6 pt-2">
@@ -60,3 +60,8 @@
         <app-preloader [show]="boolPreloader"></app-preloader>
     </ng-container>
 </div>
+<ng-container *ngIf="!boolPreloader && errorMessage">
+    <div class="text-center text-danger mt-5 p-5">
+        Something went wrong
+    </div>
+</ng-container>
